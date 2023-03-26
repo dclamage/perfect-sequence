@@ -1,0 +1,21 @@
+/* ToastStyles.css */
+
+.custom-toast-container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.custom-toast-progress {
+    background-color: #007bff;
+}
+
+.custom-toast-success {
+    background-color: #495057;
+    color: white;
+}
+
+.custom-toast-error {
+    background-color: #dc3545;
+    color: white;
+}

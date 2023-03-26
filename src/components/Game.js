@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Slot from './Slot';
 import './Game.css';
+import './ToastStyles.css';
 
 const generateRandomNumber = (slots) => {
   let randomNumber;
@@ -37,6 +40,23 @@ const numberToEmoji = (number) => {
 
   // Return the emojis as a string
   return emojis.join('');
+};
+
+const CustomCloseButton = ({ closeToast }) => {
+  return (
+    <button
+      onClick={closeToast}
+      style={{
+        fontSize: '16px',
+        color: 'white',
+        background: 'transparent',
+        border: 'none',
+        cursor: 'pointer',
+      }}
+    >
+      &times;
+    </button>
+  );
 };
 
 const GameState = {
@@ -130,7 +150,28 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
     shareTextBuilder.push(shareLink);
 
     const shareText = shareTextBuilder.join('\n');
-    navigator.clipboard.writeText(shareText);
+    navigator.clipboard
+      .writeText(shareText)
+      .then(() => {
+        toast.success('Copied to clipboard!', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          className: 'custom-toast-success',
+          progressClassName: 'custom-toast-progress',
+          bodyClassName: 'custom-toast-container',
+          closeButton: <CustomCloseButton />,
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to copy to clipboard', {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 3000,
+          className: 'custom-toast-error',
+          progressClassName: 'custom-toast-progress',
+          bodyClassName: 'custom-toast-container',
+          closeButton: <CustomCloseButton />,
+        });
+      });
   }, [slots, currentNumber, gameState]);
 
   useEffect(() => {
@@ -227,6 +268,7 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
           </button>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

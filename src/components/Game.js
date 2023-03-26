@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './Game.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareFromSquare } from '@fortawesome/free-solid-svg-icons';
 import Slot from './Slot';
+import './Game.css';
 
 const generateRandomNumber = (slots) => {
   let randomNumber;
@@ -8,6 +10,33 @@ const generateRandomNumber = (slots) => {
     randomNumber = Math.floor(Math.random() * 1000);
   } while (slots.includes(randomNumber));
   return randomNumber;
+};
+
+const numberEmoji = [
+  '0️⃣',
+  '1️⃣',
+  '2️⃣',
+  '3️⃣',
+  '4️⃣',
+  '5️⃣',
+  '6️⃣',
+  '7️⃣',
+  '8️⃣',
+  '9️⃣',
+];
+
+const numberToEmoji = (number) => {
+  // Extract the three digits from the number
+  const digits = number.toString().padStart(3, '0').split('').map(Number);
+
+  // Convert each digit to its corresponding emoji
+  // 1 = 1️⃣, 2 = 2️⃣, etc.
+  const emojis = digits.map((digit) => {
+    return numberEmoji[digit];
+  });
+
+  // Return the emojis as a string
+  return emojis.join('');
 };
 
 const GameState = {
@@ -67,6 +96,43 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
     setGameState(GameState.Resetting);
   }, []);
 
+  const shareGame = useCallback(() => {
+    // Copy to clipboard the results of the game
+    let shareTextBuilder = [];
+    const totalSlots = slots.length;
+    const shareTitle = `Perfect Sequence (${totalSlots})`;
+    shareTextBuilder.push(shareTitle);
+
+    const numFilled = slots.filter((slot) => slot !== null).length;
+    const shareSummary = `${numFilled} / ${totalSlots}`;
+    shareTextBuilder.push(shareSummary);
+
+    const gameBreakdown = slots
+      .map((slot) => {
+        if (slot === null) {
+          return '❌❌❌';
+        } else {
+          return numberToEmoji(slot);
+        }
+      })
+      .join('\n');
+    shareTextBuilder.push(gameBreakdown);
+
+    shareTextBuilder.push('-------');
+
+    if (gameState === GameState.Lost) {
+      shareTextBuilder.push(`${numberToEmoji(currentNumber)}`);
+    } else {
+      shareTextBuilder.push('🎉🎉🎉');
+    }
+
+    const shareLink = '\nhttps://dclamage.github.io/perfect-sequence';
+    shareTextBuilder.push(shareLink);
+
+    const shareText = shareTextBuilder.join('\n');
+    navigator.clipboard.writeText(shareText);
+  }, [slots, currentNumber, gameState]);
+
   useEffect(() => {
     if (gameState === GameState.Resetting) return;
 
@@ -116,7 +182,7 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
   const column1Size = Math.ceil(slots.length / 2);
   return (
     <div className="Game">
-      <div className="controls">
+      <div className="number-display">
         {gameState === GameState.Won ? (
           <div className="won">You Won!</div>
         ) : gameState === GameState.Lost ? (
@@ -151,11 +217,16 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
           ))}
         </div>
       </div>
-      <div className="controls">
-        <button onClick={resetGame} className="reset-button">
-          New Game
-        </button>
-      </div>
+      {gameState !== GameState.InProgress && (
+        <div className="controls">
+          <button onClick={resetGame} className="reset-button">
+            New Game
+          </button>
+          <button onClick={shareGame} className="copy-button">
+            <FontAwesomeIcon icon={faShareFromSquare} /> Share Results
+          </button>
+        </div>
+      )}
     </div>
   );
 };

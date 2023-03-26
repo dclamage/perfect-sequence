@@ -32,9 +32,18 @@
     margin-right: 0.5rem;
 }
 
-.controls {
+.number-display {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: #adb5bd;
+    margin-bottom: 1rem;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 1rem;
     color: #adb5bd;

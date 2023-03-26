@@ -39,6 +39,8 @@ function App() {
     const storedDifficulty = localStorage.getItem('lastDifficulty');
     if (storedDifficulty) {
       setTotalSlots(Number(storedDifficulty));
+    } else {
+      setTotalSlots(8);
     }
   }, []);
 

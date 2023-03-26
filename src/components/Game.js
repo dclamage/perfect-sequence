@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './Game.css';
 import Slot from './Slot';
 
-const TOTAL_SLOTS = 20;
-
 const generateRandomNumber = (slots) => {
   let randomNumber;
   do {
@@ -12,8 +10,8 @@ const generateRandomNumber = (slots) => {
   return randomNumber;
 };
 
-function Game() {
-  const [slots, setSlots] = useState(Array(TOTAL_SLOTS).fill(null));
+const Game = ({ totalSlots }) => {
+  const [slots, setSlots] = useState(Array(totalSlots).fill(null));
   const [currentNumber, setCurrentNumber] = useState(() => {
     return generateRandomNumber(slots);
   });
@@ -60,10 +58,11 @@ function Game() {
   };
 
   const resetGame = () => {
-    const newSlots = Array(TOTAL_SLOTS).fill(null);
+    const newSlots = Array(totalSlots).fill(null);
     setSlots(newSlots);
     setCurrentNumber(generateRandomNumber(newSlots));
     setGameOver(false);
+    setWon(false);
   };
 
   useEffect(() => {
@@ -71,6 +70,10 @@ function Game() {
       setGameOver(true);
     }
   }, [slots, isReceivable]);
+
+  useEffect(() => {
+    resetGame();
+  }, [totalSlots]);
 
   const column1Size = Math.ceil(slots.length / 2);
   return (
@@ -112,11 +115,11 @@ function Game() {
       </div>
       <div className="controls">
         <button onClick={resetGame} className="reset-button">
-          Reset
+          New Game
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default Game;

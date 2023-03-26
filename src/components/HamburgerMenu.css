@@ -1,0 +1,46 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bm-menu {
+    background-color: #1c1e2a;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+}
+
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+}
+
+.bm-cross {
+    background: #bdc3c7;
+}
+
+.menu-item {
+    background-color: #1c1e2a;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    text-align: left;
+    width: 100%;
+}
+
+.menu-item:hover {
+    background-color: #3a3f5c;
+}
+
+.menu-item i {
+    margin-right: 1rem;
+}

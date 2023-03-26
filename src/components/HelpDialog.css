@@ -1,0 +1,85 @@
+.help-dialog-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.help-dialog {
+    background-color: #1c1e2a;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.help-title {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    padding: 0;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-direction: column;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    margin: 0 0.5rem;
+}
+
+.created-by {
+    margin-bottom: 1rem;
+}
+
+.created-by span {
+    font-weight: bold;
+    color: #e31b6d;
+}
+
+.youtube-link:hover {
+    color: #ff0000;
+    /* YouTube red */
+}
+
+.github-link:hover {
+    color: #0366d6;
+    /* GitHub blue */
+}
+
+.kofi-link:hover {
+    color: #ff5f5f;
+    /* Kofi blue */
+}
+
+.links i {
+    margin-right: 0.5rem;
+}
+
+.links p {
+    margin-bottom: 0.25rem;
+}

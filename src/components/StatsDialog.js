@@ -10,6 +10,12 @@ const StatsDialog = ({ difficulty, stats, onClose }) => {
     };
   }
 
+  function handleOverlayClick(e) {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  }
+
   const winRate = (stats.gamesWon / stats.gamesPlayed) * 100;
   let winRateString;
   if (winRate === 0 || isNaN(winRate)) {
@@ -29,7 +35,7 @@ const StatsDialog = ({ difficulty, stats, onClose }) => {
   }
 
   return (
-    <div className="game-stats-dialog-overlay">
+    <div className="game-stats-dialog-overlay" onClick={handleOverlayClick}>
       <div className="game-stats-dialog">
         <button className="close-button" onClick={onClose}>
           &times;
@@ -51,44 +57,46 @@ const StatsDialog = ({ difficulty, stats, onClose }) => {
             </div>
           </div>
 
-          <div className="histogram">
-            <div className="histogram-label-column">
-              <div className="histogram-header-row">
-                <div className="histogram-header-label">Placed</div>
-              </div>
-              {Array.from({ length: difficulty }, (_, i) => ({
-                id: 'histogram-label-' + (i + 1),
-                label: i + 1,
-              })).map(({ id, label }) => (
-                <div className="histogram-row" key={id}>
-                  <div className="histogram-row-label">{label}</div>
-                </div>
-              ))}
+          <div className="histogram-container">
+            <div className="histogram-header">
+              <div className="histogram-header-label">Placed</div>
+              <div className="histogram-header-label">Number of Games</div>
             </div>
-            <div className="histogram-bar-column">
-              <div className="histogram-header-row">
-                <div className="histogram-header-label">Number of Games</div>
+            <div className="histogram-content">
+              <div className="histogram-label-column">
+                {Array.from({ length: difficulty }, (_, i) => ({
+                  id: 'histogram-label-' + (i + 1),
+                  label: i + 1,
+                })).map(({ id, label }) => (
+                  <div className="histogram-row" key={id}>
+                    <div className="histogram-row-label">{label}</div>
+                  </div>
+                ))}
               </div>
-              {Array.from({ length: difficulty }, (_, i) => ({
-                id: 'histogram-bar-' + (i + 1),
-                count: stats.histogram[i + 1] || 0,
-              })).map(({ id, count }) => (
-                <div className="histogram-row" key={id}>
-                  <div className="histogram-row-bar">
-                    <div
-                      className="histogram-row-bar-fill"
-                      style={{
-                        width: `${10 + (count / stats.gamesPlayed || 0) * 90}%`,
-                      }}
-                    >
-                      {' '}
-                      {count > -1 && (
-                        <div className="histogram-row-count">{count}</div>
-                      )}
+              <div className="histogram-bar-column">
+                {Array.from({ length: difficulty }, (_, i) => ({
+                  id: 'histogram-bar-' + (i + 1),
+                  count: stats.histogram[i + 1] || 0,
+                })).map(({ id, count }) => (
+                  <div className="histogram-row" key={id}>
+                    <div className="histogram-row-bar">
+                      <div
+                        className="histogram-row-bar-fill"
+                        style={{
+                          width: `${
+                            10 + (count / stats.gamesPlayed || 0) * 90
+                          }%`,
+                        }}
+                      >
+                        {' '}
+                        {count > -1 && (
+                          <div className="histogram-row-count">{count}</div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

@@ -17,7 +17,9 @@
     border-radius: 10px;
     width: 70%;
     max-width: 600px;
+    max-height: 90vh;
     position: relative;
+    overflow-y: auto;
 }
 
 .game-stats-title {
@@ -60,16 +62,32 @@
 
 .histogram-label-column {
     flex: 0 0 20%;
+    position: sticky;
+    left: 0;
+    background-color: #1c1e2a;
+    z-index: 1;
 }
 
 .histogram-bar-column {
     flex: 1;
 }
 
+.histogram-container {
+    position: relative;
+}
+
 .histogram {
     display: flex;
     align-items: center;
     margin: 0.5rem 0;
+}
+
+.histogram-header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background-color: #1c1e2a;
+    z-index: 1;
 }
 
 .histogram-header-row {
@@ -81,7 +99,67 @@
     color: white;
     font-size: 2rem;
     text-align: left;
-    padding-left: 1rem;
+    padding-left: 1.2rem;
+    height: 3rem;
+    line-height: 3rem;
+}
+
+.histogram-content {
+    display: flex;
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 1rem;
+    padding-right: 20px;
+    scrollbar-width: thin;
+    /* Change width of scrollbar container */
+    scrollbar-color: #0074d9 #40424e;
+    /* Set color of scrollbar handle and track */
+}
+
+
+/* Style the scrollbar container */
+
+.histogram-content::-webkit-scrollbar {
+    width: 10px;
+    /* Change width of scrollbar container */
+}
+
+
+/* Style the scrollbar handle */
+
+.histogram-content::-webkit-scrollbar-thumb {
+    background-color: #0074d9;
+    /* Change color of scrollbar handle */
+    border-radius: 5px;
+    /* Add border-radius to scrollbar handle */
+}
+
+
+/* Style the scrollbar track */
+
+.histogram-content::-webkit-scrollbar-track {
+    background-color: #40424e;
+    /* Change color of scrollbar track */
+    border-radius: 5px;
+    /* Add border-radius to scrollbar track */
+}
+
+.histogram-content {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    /* Enable auto-hiding scrollbar */
+}
+
+.histogram-content::-ms-scrollbar {
+    width: 10px;
+    /* Change width of scrollbar container */
+}
+
+.histogram-content::-ms-scrollbar-thumb {
+    background-color: #0074d9;
+    /* Change color of scrollbar handle */
+    border-radius: 5px;
+    /* Add border-radius to scrollbar handle */
 }
 
 .histogram-row {
@@ -129,4 +207,32 @@
     display: flex;
     justify-content: space-between;
     margin: 0.5rem 0;
+}
+
+
+/* Mobile adjustments */
+
+@media (max-width: 480px) {
+    .game-stats-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .game-stats-number {
+        font-size: 2rem;
+    }
+    .game-stats-label {
+        font-size: 1rem;
+    }
+    .game-stats-numbers-row {
+        margin: 1rem;
+        padding: 0;
+    }
+    .histogram-header-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.2rem;
+        padding-right: 0.1rem;
+        padding-left: 0.4rem;
+    }
 }

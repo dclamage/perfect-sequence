@@ -1,19 +1,17 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './HelpDialog.css';
 import logo from '../logo.png';
 
 const HelpDialog = ({ onClose }) => {
-  const dialogRef = useRef();
-
-  const handleClickOutside = (event) => {
-    if (dialogRef.current && !dialogRef.current.contains(event.target)) {
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
       onClose();
     }
   };
 
   return (
-    <div className="help-dialog-overlay" onClick={handleClickOutside}>
-      <div className="help-dialog" ref={dialogRef}>
+    <div className="help-dialog-overlay" onClick={handleOverlayClick}>
+      <div className="help-dialog">
         <button className="close-button" onClick={onClose}>
           &times;
         </button>

@@ -10,14 +10,22 @@ const generateRandomNumber = (slots) => {
   return randomNumber;
 };
 
-const Game = ({ totalSlots, sequence }) => {
+const GameState = {
+  InProgress: 0,
+  Lost: 1,
+  Won: 2,
+  Resetting: 3,
+};
+
+const Game = ({ totalSlots, sequence, onGameEnd }) => {
   const [slots, setSlots] = useState(Array(totalSlots).fill(null));
   const [sequenceIndex, setSequenceIndex] = useState(0);
   const [currentNumber, setCurrentNumber] = useState(() => {
     return sequence[sequenceIndex] || generateRandomNumber(slots);
   });
-  const [gameOver, setGameOver] = useState(false);
-  const [won, setWon] = useState(false);
+  const [gameState, setGameState] = useState(GameState.InProgress);
+  const [gameId, setGameId] = useState(0);
+  const [lastReportedGameId, setLastReportedGameId] = useState(-1);
 
   const isReceivable = useCallback(
     (index) => {
@@ -53,40 +61,65 @@ const Game = ({ totalSlots, sequence }) => {
     setCurrentNumber(
       sequence[sequenceIndex + 1] || generateRandomNumber(updatedSlots)
     );
-
-    const gameOver = updatedSlots.every((_, i) => !isReceivable(i));
-    setGameOver(gameOver);
-
-    const won = updatedSlots.every((slot) => slot !== null);
-    setWon(won);
   };
 
   const resetGame = useCallback(() => {
-    const newSlots = Array(totalSlots).fill(null);
-    setSlots(newSlots);
-    setCurrentNumber(sequence[0] || generateRandomNumber(newSlots));
-    setGameOver(false);
-    setWon(false);
-    setSequenceIndex(0);
-  }, [totalSlots, sequence]);
+    setGameState(GameState.Resetting);
+  }, []);
 
   useEffect(() => {
-    if (slots.every((_, index) => !isReceivable(index))) {
-      setGameOver(true);
+    if (gameState === GameState.Resetting) return;
+
+    if (slots.every((slot) => slot !== null)) {
+      setGameState(GameState.Won);
+    } else if (slots.every((_, i) => !isReceivable(i))) {
+      setGameState(GameState.Lost);
+    } else {
+      setGameState(GameState.InProgress);
     }
-  }, [slots, isReceivable]);
+  }, [slots, gameState, isReceivable]);
 
   useEffect(() => {
-    resetGame();
+    if (gameState !== GameState.InProgress) {
+      if (lastReportedGameId !== gameId) {
+        const filledSlots = slots.filter((slot) => slot !== null).length;
+        if (filledSlots !== 0) {
+          onGameEnd(gameState === GameState.Won, slots.length, filledSlots);
+          setLastReportedGameId(gameId);
+        }
+      }
+
+      if (gameState === GameState.Resetting) {
+        setGameState(GameState.InProgress);
+
+        const newSlots = Array(totalSlots).fill(null);
+        setSlots(newSlots);
+        setCurrentNumber(sequence[0] || generateRandomNumber(newSlots));
+        setSequenceIndex(0);
+        setGameId((prevId) => prevId + 1);
+      }
+    }
+  }, [
+    gameState,
+    slots,
+    lastReportedGameId,
+    gameId,
+    totalSlots,
+    sequence,
+    onGameEnd,
+  ]);
+
+  useEffect(() => {
+    setGameState(GameState.Resetting);
   }, [totalSlots, resetGame]);
 
   const column1Size = Math.ceil(slots.length / 2);
   return (
     <div className="Game">
       <div className="controls">
-        {won ? (
+        {gameState === GameState.Won ? (
           <div className="won">You Won!</div>
-        ) : gameOver ? (
+        ) : gameState === GameState.Lost ? (
           <div className="game-over">{currentNumber}</div>
         ) : (
           <div className="current-number">{currentNumber}</div>

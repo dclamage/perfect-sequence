@@ -1,0 +1,132 @@
+.game-stats-dialog-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-stats-dialog {
+    background-color: #1c1e2a;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 70%;
+    max-width: 600px;
+    position: relative;
+}
+
+.game-stats-title {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    padding: 0;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+.game-stats {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.game-stats-numbers-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem;
+    padding: 0;
+}
+
+.game-stats-number {
+    font-size: 4rem;
+}
+
+.game-stats-label {
+    font-size: 1.5rem;
+}
+
+.histogram-label-column {
+    flex: 0 0 20%;
+}
+
+.histogram-bar-column {
+    flex: 1;
+}
+
+.histogram {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.histogram-header-row {
+    height: 3rem;
+    margin: 0.5rem 0;
+}
+
+.histogram-header-label {
+    color: white;
+    font-size: 2rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.histogram-row {
+    height: 2rem;
+    margin: 0.5rem 0;
+}
+
+.histogram-row-label {
+    color: white;
+    font-size: 1.5rem;
+    height: 2rem;
+}
+
+.histogram-row-bar {
+    flex: 1;
+    height: 2rem;
+    background-color: #40424e00;
+    border-radius: 0.25rem;
+    margin: 0 1rem;
+    position: relative;
+}
+
+.histogram-row-bar-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0074d9;
+    border-radius: 0.25rem;
+    line-height: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.histogram-row-count {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.histogram-row-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}

@@ -57,7 +57,7 @@ const StatsDialog = ({ difficulty, stats, onClose }) => {
                 <div className="histogram-header-label">Placed</div>
               </div>
               {Array.from({ length: difficulty }, (_, i) => ({
-                id: 'histogram-label-' + i,
+                id: 'histogram-label-' + (i + 1),
                 label: i + 1,
               })).map(({ id, label }) => (
                 <div className="histogram-row" key={id}>
@@ -70,8 +70,8 @@ const StatsDialog = ({ difficulty, stats, onClose }) => {
                 <div className="histogram-header-label">Number of Games</div>
               </div>
               {Array.from({ length: difficulty }, (_, i) => ({
-                id: 'histogram-bar-' + i,
-                count: stats.histogram[i] || 0,
+                id: 'histogram-bar-' + (i + 1),
+                count: stats.histogram[i + 1] || 0,
               })).map(({ id, count }) => (
                 <div className="histogram-row" key={id}>
                   <div className="histogram-row-bar">

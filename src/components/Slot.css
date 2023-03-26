@@ -1,0 +1,31 @@
+.Slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8rem;
+    height: 3rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1.2rem;
+    background-color: #1c1e2a;
+    color: white;
+    cursor: pointer;
+}
+
+.Slot.filled {
+    background-color: #2196f3;
+    color: white;
+    cursor: default;
+}
+
+.Slot:hover:not(.filled):not(.non-receivable) {
+    background-color: #34495e;
+}
+
+.Slot.receivable {
+    background-color: #4a6572;
+}
+
+.Slot.non-receivable {
+    cursor: default;
+}

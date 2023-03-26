@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/perfect-sequence/static/css/main.1c2b6626.css",
-    "main.js": "/perfect-sequence/static/js/main.c43b46db.js",
+    "main.css": "/perfect-sequence/static/css/main.fea007a7.css",
+    "main.js": "/perfect-sequence/static/js/main.1dee4c1a.js",
     "static/js/787.dc1b267a.chunk.js": "/perfect-sequence/static/js/787.dc1b267a.chunk.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/perfect-sequence/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/perfect-sequence/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/perfect-sequence/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/perfect-sequence/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/perfect-sequence/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/logo.png": "/perfect-sequence/static/media/logo.bf3861a5d12231a8ea82.png",
     "index.html": "/perfect-sequence/index.html",
-    "main.1c2b6626.css.map": "/perfect-sequence/static/css/main.1c2b6626.css.map",
-    "main.c43b46db.js.map": "/perfect-sequence/static/js/main.c43b46db.js.map",
+    "main.fea007a7.css.map": "/perfect-sequence/static/css/main.fea007a7.css.map",
+    "main.1dee4c1a.js.map": "/perfect-sequence/static/js/main.1dee4c1a.js.map",
     "787.dc1b267a.chunk.js.map": "/perfect-sequence/static/js/787.dc1b267a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1c2b6626.css",
-    "static/js/main.c43b46db.js"
+    "static/css/main.fea007a7.css",
+    "static/js/main.1dee4c1a.js"
   ]
 }

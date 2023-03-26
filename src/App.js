@@ -36,11 +36,19 @@ function App() {
   });
 
   useEffect(() => {
-    const storedDifficulty = localStorage.getItem('lastDifficulty');
-    if (storedDifficulty) {
-      setTotalSlots(Number(storedDifficulty));
+    const searchParams = new URLSearchParams(window.location.search);
+    const encodedSequence = searchParams.get('seq');
+    if (encodedSequence) {
+      const decodedSequence = decodeSequence(encodedSequence);
+      setSequence(decodedSequence);
+      setTotalSlots(decodedSequence.length);
     } else {
-      setTotalSlots(8);
+      const storedDifficulty = localStorage.getItem('lastDifficulty');
+      if (storedDifficulty) {
+        setTotalSlots(Number(storedDifficulty));
+      } else {
+        setTotalSlots(8);
+      }
     }
   }, []);
 

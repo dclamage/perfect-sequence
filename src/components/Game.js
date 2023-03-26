@@ -75,6 +75,7 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
   const [gameState, setGameState] = useState(GameState.InProgress);
   const [gameId, setGameId] = useState(0);
   const [lastReportedGameId, setLastReportedGameId] = useState(-1);
+  const isCustomSequence = sequence && sequence.length > 0;
 
   const isReceivable = useCallback(
     (index) => {
@@ -188,7 +189,7 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
 
   useEffect(() => {
     if (gameState !== GameState.InProgress) {
-      if (lastReportedGameId !== gameId) {
+      if (lastReportedGameId !== gameId && !isCustomSequence) {
         const filledSlots = slots.filter((slot) => slot !== null).length;
         if (filledSlots !== 0) {
           onGameEnd(gameState === GameState.Won, slots.length, filledSlots);

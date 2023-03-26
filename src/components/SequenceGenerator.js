@@ -9,9 +9,12 @@ const SequenceGenerator = ({ onClose }) => {
     e.preventDefault();
     const sequence = inputValue.split(',').map(Number);
     const encodedSequence = encodeSequence(sequence);
-    const url = `${window.location.origin}?seq=${encodedSequence}`;
+    const currentHost = window.location.host;
+    const currentPathname = window.location.pathname;
+    const url = `${window.location.protocol}//${currentHost}${currentPathname}?seq=${encodedSequence}`;
     window.open(url, '_blank'); // This line will open the URL in a new tab
   };
+  
 
   return (
     <div className="sequence-generator-overlay">

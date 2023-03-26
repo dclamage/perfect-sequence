@@ -24,6 +24,12 @@
     font-weight: 500;
 }
 
+@media only screen and (max-width: 600px) {
+    .App-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
 .header-content {
     display: flex;
     align-items: center;
@@ -39,12 +45,19 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    width: calc(100% - 100px);
 }
 
 .App-logo {
     max-width: 3rem;
     /* Adjust the width as needed */
     margin: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .App-logo {
+        max-width: 3rem;
+    }
 }
 
 h1 {

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/perfect-sequence/static/css/main.2f0ee9d2.css",
-    "main.js": "/perfect-sequence/static/js/main.9d969d76.js",
+    "main.css": "/perfect-sequence/static/css/main.23fc893e.css",
+    "main.js": "/perfect-sequence/static/js/main.369105cc.js",
     "static/js/787.dc1b267a.chunk.js": "/perfect-sequence/static/js/787.dc1b267a.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/perfect-sequence/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/perfect-sequence/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -10,12 +10,12 @@
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/perfect-sequence/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/logo.png": "/perfect-sequence/static/media/logo.bf3861a5d12231a8ea82.png",
     "index.html": "/perfect-sequence/index.html",
-    "main.2f0ee9d2.css.map": "/perfect-sequence/static/css/main.2f0ee9d2.css.map",
-    "main.9d969d76.js.map": "/perfect-sequence/static/js/main.9d969d76.js.map",
+    "main.23fc893e.css.map": "/perfect-sequence/static/css/main.23fc893e.css.map",
+    "main.369105cc.js.map": "/perfect-sequence/static/js/main.369105cc.js.map",
     "787.dc1b267a.chunk.js.map": "/perfect-sequence/static/js/787.dc1b267a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2f0ee9d2.css",
-    "static/js/main.9d969d76.js"
+    "static/css/main.23fc893e.css",
+    "static/js/main.369105cc.js"
   ]
 }

@@ -1,10 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import './HelpDialog.css';
 import logo from '../logo.png';
 
 const HelpDialog = ({ onClose }) => {
-  const dialogOverlayRef = useRef(null);
-
   const dialogRef = useRef();
 
   const handleClickOutside = (event) => {

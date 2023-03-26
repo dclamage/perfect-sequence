@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import './HamburgerMenu.css';
 
@@ -6,7 +6,6 @@ const HamburgerMenu = ({
   setTotalSlots,
   isOpen,
   onStateChange,
-  showHelpDialog,
   setShowHelpDialog,
 }) => {
   const handleDifficultyChange = (numSlots) => {

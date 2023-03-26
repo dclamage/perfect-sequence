@@ -10,10 +10,11 @@ const generateRandomNumber = (slots) => {
   return randomNumber;
 };
 
-const Game = ({ totalSlots }) => {
+const Game = ({ totalSlots, sequence }) => {
   const [slots, setSlots] = useState(Array(totalSlots).fill(null));
+  const [sequenceIndex, setSequenceIndex] = useState(0);
   const [currentNumber, setCurrentNumber] = useState(() => {
-    return generateRandomNumber(slots);
+    return sequence[sequenceIndex] || generateRandomNumber(slots);
   });
   const [gameOver, setGameOver] = useState(false);
   const [won, setWon] = useState(false);
@@ -48,7 +49,10 @@ const Game = ({ totalSlots }) => {
     const updatedSlots = [...slots];
     updatedSlots[index] = currentNumber;
     setSlots(updatedSlots);
-    setCurrentNumber(generateRandomNumber(updatedSlots));
+    setSequenceIndex((prevIndex) => prevIndex + 1);
+    setCurrentNumber(
+      sequence[sequenceIndex + 1] || generateRandomNumber(updatedSlots)
+    );
 
     const gameOver = updatedSlots.every((_, i) => !isReceivable(i));
     setGameOver(gameOver);
@@ -57,13 +61,14 @@ const Game = ({ totalSlots }) => {
     setWon(won);
   };
 
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     const newSlots = Array(totalSlots).fill(null);
     setSlots(newSlots);
-    setCurrentNumber(generateRandomNumber(newSlots));
+    setCurrentNumber(sequence[0] || generateRandomNumber(newSlots));
     setGameOver(false);
     setWon(false);
-  };
+    setSequenceIndex(0);
+  }, [totalSlots, sequence]);
 
   useEffect(() => {
     if (slots.every((_, index) => !isReceivable(index))) {
@@ -73,7 +78,7 @@ const Game = ({ totalSlots }) => {
 
   useEffect(() => {
     resetGame();
-  }, [totalSlots]);
+  }, [totalSlots, resetGame]);
 
   const column1Size = Math.ceil(slots.length / 2);
   return (

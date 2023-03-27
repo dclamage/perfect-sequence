@@ -29,8 +29,8 @@ const HelpDialog = ({ onClose }) => {
           slots.
         </p>
         <p>
-          To change the game's difficulty, open the menu by clicking on the
-          hamburger icon and select the desired difficulty level.
+          There are several difficulty levels to choose from. The higher the
+          difficulty, the more slots you have to fill.
         </p>
         <div className="links">
           <p className="created-by">

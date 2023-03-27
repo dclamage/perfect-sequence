@@ -7,8 +7,6 @@ const DifficultyChoiceRow = ({
   currentDifficulty,
   changeDifficulty,
 }) => {
-  console.log('currentDifficulty', currentDifficulty);
-
   return (
     <div className="difficulty-choice-row">
       {difficultyInfo.map((difficultyEntry, index) => (

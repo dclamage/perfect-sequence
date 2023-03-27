@@ -1,6 +1,9 @@
 import React from 'react';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faYoutube, faGithub } from '@fortawesome/free-brands-svg-icons';
 import './HelpDialog.css';
 import logo from '../logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HelpDialog = ({ onClose }) => {
   const handleOverlayClick = (event) => {
@@ -40,7 +43,7 @@ const HelpDialog = ({ onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fa fa-youtube-play"></i> YouTube
+              <FontAwesomeIcon icon={faYoutube} /> YouTube
             </a>
             <a
               className="github-link"
@@ -48,7 +51,7 @@ const HelpDialog = ({ onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fa fa-github"></i> GitHub
+              <FontAwesomeIcon icon={faGithub} /> GitHub
             </a>
           </p>
           <p>
@@ -58,7 +61,7 @@ const HelpDialog = ({ onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="fa fa-coffee"></i> Buy me a Coffee
+              <FontAwesomeIcon icon={faCoffee} /> Buy me a Coffee
             </a>
           </p>
         </div>

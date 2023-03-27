@@ -11,11 +11,12 @@
 
 .App-header {
     background-color: #1c1e2a;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     margin-top: 0;
     margin-bottom: 1rem;
     color: white;
     width: 100%;
+    white-space: nowrap;
 }
 
 .App-header h1 {
@@ -24,28 +25,25 @@
     font-weight: 500;
 }
 
-@media only screen and (max-width: 600px) {
-    .App-header h1 {
-        font-size: 1.5rem;
-    }
-}
-
 .header-content {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     padding: 0 1rem;
-    position: relative;
 }
 
-.logo-title-container {
+.header-logo-container {
+    flex: 1;
+    display: flex;
+}
+
+.header-title-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 100px);
+    text-align: center;
+    flex: 1;
 }
 
 .App-logo {
@@ -56,16 +54,30 @@
 
 .menu-icons-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-}
-
-@media only screen and (max-width: 600px) {
-    .App-logo {
-        max-width: 3rem;
-    }
+    text-align: right;
+    flex: 1;
 }
 
 h1 {
     margin: 10px;
+}
+
+@media only screen and (max-width: 850px) {
+    .App-logo {
+        max-width: 2rem;
+    }
+    .App-header h1 {
+        font-size: 1rem;
+    }
+    .header-logo-container {
+        flex: 1;
+    }
+    .header-title-container {
+        flex: 1;
+    }
+    .menu-icons-container {
+        flex: 1;
+    }
 }

@@ -47,7 +47,7 @@
 
 @media only screen and (max-width: 850px) {
     .difficulty-choice-row {
-        margin: 1rem;
+        margin: 0;
         padding: 0;
     }
     .difficulty-choice-label {

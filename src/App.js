@@ -1,4 +1,10 @@
+// External dependencies
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import {
+  faQuestionCircle,
+  faBarChart,
+} from '@fortawesome/free-regular-svg-icons';
 import {
   faStarHalfAlt,
   faStar,
@@ -6,22 +12,23 @@ import {
   faRocket,
   faSkullCrossbones,
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faQuestionCircle,
-  faBarChart,
-} from '@fortawesome/free-regular-svg-icons';
-import 'font-awesome/css/font-awesome.min.css';
-import './App.css';
+
+// Components
 import Game from './components/Game';
-import logo from './logo.png';
-import HamburgerMenu from './components/HamburgerMenu';
-import Hamburger from './components/Hamburger';
 import HelpDialog from './components/HelpDialog';
+import MenuIcon from './components/MenuIcon';
 import SequenceGenerator from './components/SequenceGenerator';
 import StatsDialog from './components/StatsDialog';
-import MenuIcon from './components/MenuIcon';
+import DifficultyDropdown from './components/DifficultyDropdown';
+
+// Utils
 import { decodeSequence } from './sequenceUtil';
-import { useLocation } from 'react-router-dom';
+
+// Assets
+import logo from './logo.png';
+
+// Styles
+import './App.css';
 
 const difficultyInfo = [
   {
@@ -69,7 +76,6 @@ function useQueryHook() {
 
 function App() {
   const [totalSlots, setTotalSlots] = useState(null);
-  const [menuVisible, setMenuVisible] = useState(false);
   const [showHelpDialog, setShowHelpDialog] = useState(false);
   const [sequence, setSequence] = useState([]);
   const [showSequenceGenerator, setShowSequenceGenerator] = useState(false);
@@ -158,10 +164,6 @@ function App() {
     }
   }, [totalSlots]);
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
   const showDialog = (dialog) => {
     setShowStatsDialog(dialog === DIALOGS.STATS);
     setShowHelpDialog(dialog === DIALOGS.HELP);
@@ -172,12 +174,18 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="header-content">
-          <Hamburger onClick={toggleMenu} />
-          <div className="logo-title-container">
+          <div className="header-logo-container">
             <img src={logo} className="App-logo" alt="logo" />
+          </div>
+          <div className="header-title-container">
             <h1>Perfect Sequence</h1>
           </div>
           <div className="menu-icons-container">
+            <DifficultyDropdown
+              difficultyInfo={difficultyInfo}
+              currentDifficulty={totalSlots}
+              onDifficultyChange={setTotalSlots}
+            />
             <MenuIcon
               onClick={() => showDialog(DIALOGS.HELP)}
               size="2x"
@@ -191,15 +199,6 @@ function App() {
           </div>
         </div>
       </header>
-      {menuVisible && (
-        <HamburgerMenu
-          setTotalSlots={setTotalSlots}
-          isOpen={menuVisible}
-          onStateChange={({ isOpen }) => setMenuVisible(isOpen)}
-          setShowHelpDialog={() => showDialog(DIALOGS.HELP)}
-          difficultyInfo={difficultyInfo}
-        />
-      )}
       {showHelpDialog && (
         <HelpDialog onClose={() => setShowHelpDialog(false)} />
       )}

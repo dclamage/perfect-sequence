@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     max-width: 800px;
+    min-height: 20rem;
 }
 
 .slots-container {

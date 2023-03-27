@@ -13,13 +13,19 @@
 .game-stats-dialog {
     background-color: #1c1e2a;
     color: white;
-    padding: 2rem;
+    padding: 0 2rem;
     border-radius: 10px;
     width: 70%;
     max-width: 600px;
-    max-height: 90vh;
-    position: relative;
+    max-height: calc(99vh - 60px - 2rem);
+    position: fixed;
+    top: 60px;
+    /* adjust this value as needed */
+    left: 50%;
+    transform: translateX(-50%);
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .game-stats-title {
@@ -40,32 +46,11 @@
     cursor: pointer;
 }
 
-.game-stats {
-    margin-bottom: 20px;
-    color: white;
-}
-
-.game-stats-numbers-row {
-    display: flex;
-    justify-content: space-between;
-    margin: 3rem;
-    padding: 0;
-}
-
-.game-stats-number {
-    font-size: 4rem;
-}
-
-.game-stats-label {
-    font-size: 1.5rem;
-}
-
 .histogram-label-column {
     flex: 0 0 20%;
     position: sticky;
     left: 0;
     background-color: #1c1e2a;
-    z-index: 1;
 }
 
 .histogram-bar-column {
@@ -73,7 +58,9 @@
 }
 
 .histogram-container {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .histogram {
@@ -99,14 +86,14 @@
     color: white;
     font-size: 2rem;
     text-align: left;
-    padding-left: 1.2rem;
+    padding-left: 1.6rem;
     height: 3rem;
     line-height: 3rem;
 }
 
 .histogram-content {
     display: flex;
-    max-height: 50vh;
+    max-height: calc(99vh - 500px);
     overflow-y: auto;
     overflow-x: hidden;
     margin-bottom: 1rem;
@@ -212,27 +199,20 @@
 
 /* Mobile adjustments */
 
-@media (max-width: 480px) {
+@media only screen and (max-width: 850px) {
     .game-stats-title {
         font-size: 1.5rem;
         margin-bottom: 0.5rem;
-    }
-    .game-stats-number {
-        font-size: 2rem;
-    }
-    .game-stats-label {
-        font-size: 1rem;
-    }
-    .game-stats-numbers-row {
-        margin: 1rem;
-        padding: 0;
     }
     .histogram-header-label {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size: 1.2rem;
-        padding-right: 0.1rem;
+        font-size: 1.5rem;
+        padding-right: 1.5rem;
         padding-left: 0.4rem;
+    }
+    .histogram-content {
+        max-height: calc(99vh - 300px);
     }
 }

@@ -1,0 +1,56 @@
+.difficulty-choice-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 1rem;
+    padding: 0;
+}
+
+.difficulty-choice-entry {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.difficulty-choice-entry-current .difficulty-choice-label {
+    color: #f1c40f;
+    font-weight: bold;
+}
+
+.difficulty-choice-entry-current {
+    color: #f1c40f;
+}
+
+.difficulty-choice-label {
+    margin-left: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.difficulty-choice-entry-container {
+    display: flex;
+    align-items: center;
+}
+
+.separator-container {
+    width: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.difficulty-choice-vertical-separator {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 2px;
+    height: 80%;
+    transform: translateY(10%);
+}
+
+@media only screen and (max-width: 850px) {
+    .difficulty-choice-row {
+        margin: 1rem;
+        padding: 0;
+    }
+    .difficulty-choice-label {
+        font-size: 0.5rem;
+    }
+}

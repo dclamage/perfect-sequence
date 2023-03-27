@@ -1,4 +1,5 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { slide as Menu } from 'react-burger-menu';
 import './HamburgerMenu.css';
 
@@ -7,6 +8,7 @@ const HamburgerMenu = ({
   isOpen,
   onStateChange,
   setShowHelpDialog,
+  difficultyInfo,
 }) => {
   const handleDifficultyChange = (numSlots) => {
     setTotalSlots(numSlots);
@@ -21,28 +23,15 @@ const HamburgerMenu = ({
   return (
     <div className="menu">
       <Menu isOpen={isOpen} onStateChange={onStateChange} disableAutoFocus>
-        <button className="menu-item" onClick={() => handleDifficultyChange(4)}>
-          <i className="fa fa-star"></i>
-          Easy (4)
-        </button>
-        <button className="menu-item" onClick={() => handleDifficultyChange(8)}>
-          <i className="fa fa-star-half-o"></i>
-          Medium (8)
-        </button>
-        <button
-          className="menu-item"
-          onClick={() => handleDifficultyChange(12)}
-        >
-          <i className="fa fa-star-o"></i>
-          Hard (12)
-        </button>
-        <button
-          className="menu-item"
-          onClick={() => handleDifficultyChange(20)}
-        >
-          <i className="fa fa-trophy"></i>
-          Impossible (20)
-        </button>
+        {difficultyInfo.map((difficulty) => (
+          <button
+            className="menu-item"
+            onClick={() => handleDifficultyChange(difficulty.numSlots)}
+          >
+            <FontAwesomeIcon icon={difficulty.icon} />
+            {difficulty.label} ({difficulty.numSlots})
+          </button>
+        ))}
         <button className="menu-item" onClick={handleHelpClick}>
           <i className="fa fa-question-circle"></i>
           Help

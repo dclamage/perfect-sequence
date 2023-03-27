@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import {
+  faStarHalfAlt,
+  faStar,
+  faShieldAlt,
+  faRocket,
+  faSkullCrossbones,
+} from '@fortawesome/free-solid-svg-icons';
+import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
 import Game from './components/Game';
 import logo from './logo.png';
@@ -8,9 +16,36 @@ import HelpDialog from './components/HelpDialog';
 import SequenceGenerator from './components/SequenceGenerator';
 import StatsDialog from './components/StatsDialog';
 import StatsMenuIcon from './components/StatsMenuIcon';
-import 'font-awesome/css/font-awesome.min.css';
 import { decodeSequence } from './sequenceUtil';
 import { useLocation } from 'react-router-dom';
+
+const difficultyInfo = [
+  {
+    label: 'Easy',
+    numSlots: 4,
+    icon: faStarHalfAlt,
+  },
+  {
+    label: 'Medium',
+    numSlots: 8,
+    icon: faStar,
+  },
+  {
+    label: 'Hard',
+    numSlots: 12,
+    icon: faShieldAlt,
+  },
+  {
+    label: 'Expert',
+    numSlots: 16,
+    icon: faRocket,
+  },
+  {
+    label: 'Impossible',
+    numSlots: 20,
+    icon: faSkullCrossbones,
+  },
+];
 
 function useQueryHook() {
   const useQuery = () => {
@@ -137,6 +172,7 @@ function App() {
           isOpen={menuVisible}
           onStateChange={({ isOpen }) => setMenuVisible(isOpen)}
           setShowHelpDialog={setShowHelpDialog}
+          difficultyInfo={difficultyInfo}
         />
       )}
       {showHelpDialog && (
@@ -153,9 +189,10 @@ function App() {
       )}
       {showStatsDialog && (
         <StatsDialog
-          difficulty={totalSlots}
-          stats={gameStats[totalSlots]}
+          initialDifficulty={totalSlots}
+          allStats={gameStats}
           onClose={() => setShowStatsDialog(false)}
+          difficultyInfo={difficultyInfo}
         />
       )}
     </div>

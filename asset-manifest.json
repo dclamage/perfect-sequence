@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/perfect-sequence/static/css/main.df26577e.css",
-    "main.js": "/perfect-sequence/static/js/main.5c796c8a.js",
+    "main.js": "/perfect-sequence/static/js/main.89d7c0ef.js",
     "static/js/787.dc1b267a.chunk.js": "/perfect-sequence/static/js/787.dc1b267a.chunk.js",
     "static/media/logo.png": "/perfect-sequence/static/media/logo.bf3861a5d12231a8ea82.png",
     "index.html": "/perfect-sequence/index.html",
     "main.df26577e.css.map": "/perfect-sequence/static/css/main.df26577e.css.map",
-    "main.5c796c8a.js.map": "/perfect-sequence/static/js/main.5c796c8a.js.map",
+    "main.89d7c0ef.js.map": "/perfect-sequence/static/js/main.89d7c0ef.js.map",
     "787.dc1b267a.chunk.js.map": "/perfect-sequence/static/js/787.dc1b267a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df26577e.css",
-    "static/js/main.5c796c8a.js"
+    "static/js/main.89d7c0ef.js"
   ]
 }

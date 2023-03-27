@@ -6,6 +6,10 @@ import {
   faRocket,
   faSkullCrossbones,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faQuestionCircle,
+  faBarChart,
+} from '@fortawesome/free-regular-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
 import './App.css';
 import Game from './components/Game';
@@ -15,7 +19,7 @@ import Hamburger from './components/Hamburger';
 import HelpDialog from './components/HelpDialog';
 import SequenceGenerator from './components/SequenceGenerator';
 import StatsDialog from './components/StatsDialog';
-import StatsMenuIcon from './components/StatsMenuIcon';
+import MenuIcon from './components/MenuIcon';
 import { decodeSequence } from './sequenceUtil';
 import { useLocation } from 'react-router-dom';
 
@@ -46,6 +50,14 @@ const difficultyInfo = [
     icon: faSkullCrossbones,
   },
 ];
+
+// Dialog enum
+const DIALOGS = {
+  NONE: 'none',
+  HELP: 'help',
+  STATS: 'stats',
+  SEQUENCE_GENERATOR: 'sequenceGenerator',
+};
 
 function useQueryHook() {
   const useQuery = () => {
@@ -150,8 +162,10 @@ function App() {
     setMenuVisible(!menuVisible);
   };
 
-  const toggleStatsMenu = () => {
-    setShowStatsDialog(!showStatsDialog);
+  const showDialog = (dialog) => {
+    setShowStatsDialog(dialog === DIALOGS.STATS);
+    setShowHelpDialog(dialog === DIALOGS.HELP);
+    setShowSequenceGenerator(dialog === DIALOGS.SEQUENCE_GENERATOR);
   };
 
   return (
@@ -163,7 +177,18 @@ function App() {
             <img src={logo} className="App-logo" alt="logo" />
             <h1>Perfect Sequence</h1>
           </div>
-          <StatsMenuIcon onClick={toggleStatsMenu} />
+          <div className="menu-icons-container">
+            <MenuIcon
+              onClick={() => showDialog(DIALOGS.HELP)}
+              size="2x"
+              icon={faQuestionCircle}
+            />
+            <MenuIcon
+              onClick={() => showDialog(DIALOGS.STATS)}
+              size="2x"
+              icon={faBarChart}
+            />
+          </div>
         </div>
       </header>
       {menuVisible && (
@@ -171,7 +196,7 @@ function App() {
           setTotalSlots={setTotalSlots}
           isOpen={menuVisible}
           onStateChange={({ isOpen }) => setMenuVisible(isOpen)}
-          setShowHelpDialog={setShowHelpDialog}
+          setShowHelpDialog={() => showDialog(DIALOGS.HELP)}
           difficultyInfo={difficultyInfo}
         />
       )}

@@ -215,6 +215,7 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
     totalSlots,
     sequence,
     onGameEnd,
+    isCustomSequence,
   ]);
 
   useEffect(() => {

@@ -54,6 +54,12 @@
     margin: 10px;
 }
 
+.menu-icons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media only screen and (max-width: 600px) {
     .App-logo {
         max-width: 3rem;

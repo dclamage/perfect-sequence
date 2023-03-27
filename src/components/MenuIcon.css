@@ -1,8 +1,11 @@
-.stats-menu-icon {
+.menu-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 24px;
     height: 24px;
     cursor: pointer;
+    margin-left: 24px;
+    z-index: 10;
+    position: relative;
 }

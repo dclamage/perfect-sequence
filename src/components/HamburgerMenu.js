@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import { slide as Menu } from 'react-burger-menu';
 import './HamburgerMenu.css';
 
@@ -25,6 +26,7 @@ const HamburgerMenu = ({
       <Menu isOpen={isOpen} onStateChange={onStateChange} disableAutoFocus>
         {difficultyInfo.map((difficulty) => (
           <button
+            key={difficulty.label}
             className="menu-item"
             onClick={() => handleDifficultyChange(difficulty.numSlots)}
           >
@@ -33,7 +35,7 @@ const HamburgerMenu = ({
           </button>
         ))}
         <button className="menu-item" onClick={handleHelpClick}>
-          <i className="fa fa-question-circle"></i>
+          <FontAwesomeIcon icon={faQuestionCircle} />
           Help
         </button>
       </Menu>

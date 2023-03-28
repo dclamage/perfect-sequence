@@ -22,7 +22,7 @@ const HelpDialog = ({ onClose }) => {
         <h2 className="help-title">About Perfect Sequence</h2>
         <p>
           Welcome to Perfect Sequence! To play the game, place the randomly
-          picked number (0 to 999) into an available slot. The goal is to create
+          picked number (1 to 999) into an available slot. The goal is to create
           a sequence of numbers in ascending order, but you don't know what
           future numbers will be! The game ends when you have filled all the
           slots or when a number is picked that cannot be placed in any of the

@@ -9,7 +9,7 @@ const Slot = ({ value, receivable, onClick }) => {
       } ${!receivable && !value ? 'non-receivable' : ''}`}
       onClick={!value ? onClick : null}
     >
-      {value || ''}
+      {value !== null ? value : ''}
     </div>
   );
 };

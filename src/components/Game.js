@@ -10,7 +10,7 @@ import './ToastStyles.css';
 const generateRandomNumber = (slots) => {
   let randomNumber;
   do {
-    randomNumber = Math.floor(Math.random() * 1000);
+    randomNumber = Math.floor(Math.random() * 999) + 1;
   } while (slots.includes(randomNumber));
   return randomNumber;
 };

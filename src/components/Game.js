@@ -66,7 +66,7 @@ const GameState = {
   Resetting: 3,
 };
 
-const Game = ({ totalSlots, sequence, onGameEnd }) => {
+const Game = ({ totalSlots, sequence, onGameEnd, difficultyInfo }) => {
   const [slots, setSlots] = useState(Array(totalSlots).fill(null));
   const [sequenceIndex, setSequenceIndex] = useState(0);
   const [currentNumber, setCurrentNumber] = useState(() => {
@@ -121,7 +121,14 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
     // Copy to clipboard the results of the game
     let shareTextBuilder = [];
     const totalSlots = slots.length;
-    const shareTitle = `Perfect Sequence (${totalSlots})`;
+    // Find the matching difficulty
+    const difficulty = isCustomSequence
+      ? { label: 'Custom' }
+      : difficultyInfo.find((difficulty) => {
+          return difficulty.numSlots === totalSlots;
+        }) || { label: 'Custom' };
+
+    const shareTitle = `Perfect Sequence (${difficulty.label})`;
     shareTextBuilder.push(shareTitle);
 
     const numFilled = slots.filter((slot) => slot !== null).length;
@@ -173,7 +180,7 @@ const Game = ({ totalSlots, sequence, onGameEnd }) => {
           closeButton: <CustomCloseButton />,
         });
       });
-  }, [slots, currentNumber, gameState]);
+  }, [slots, currentNumber, gameState, difficultyInfo, isCustomSequence]);
 
   useEffect(() => {
     if (gameState === GameState.Resetting) return;

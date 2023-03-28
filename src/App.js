@@ -202,7 +202,12 @@ function App() {
       {showHelpDialog && (
         <HelpDialog onClose={() => setShowHelpDialog(false)} />
       )}
-      <Game totalSlots={totalSlots} sequence={sequence} onGameEnd={onGameEnd} />
+      <Game
+        totalSlots={totalSlots}
+        sequence={sequence}
+        onGameEnd={onGameEnd}
+        difficultyInfo={difficultyInfo}
+      />
       {showSequenceGenerator && (
         <SequenceGenerator
           onClose={() => {
